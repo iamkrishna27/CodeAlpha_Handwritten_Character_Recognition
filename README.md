@@ -1,3 +1,17 @@
+![Header](https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,100:22D3EE&height=180&section=header&text=Handwritten%20Digit%20Recognition&fontSize=35&fontColor=ffffff&animation=fadeIn)
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=22D3EE&center=true&vCenter=true&width=500&lines=CNN+trained+on+MNIST;98.75%25+Test+Accuracy;CodeAlpha+ML+Internship+Task+3" alt="Typing SVG" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/Keras-D00000?logo=keras&logoColor=white" />
+  <img src="https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white" />
+  <img src="https://img.shields.io/badge/Matplotlib-11557C?logo=plotly&logoColor=white" />
+</p>
+
 # Handwritten Character Recognition MVP
 
 A Convolutional Neural Network (CNN) built to recognize handwritten digits (0-9) from the MNIST dataset.
@@ -8,6 +22,8 @@ This project was developed as **Task 3** for the **CodeAlpha Machine Learning In
 The objective of this project is to build a Minimum Viable Product (MVP) capable of classifying handwritten characters with high accuracy.
 
 The model was trained on the classic [MNIST dataset](http://yann.lecun.com/exdb/mnist/) and achieves a **98.75% Test Accuracy** in just 5 training epochs.
+
+![divider](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
 ## 🛠️ Tech Stack
 
@@ -52,6 +68,8 @@ Dense (10 units, Softmax)           → class probabilities
 | Loss Function | `sparse_categorical_crossentropy` |
 | Optimizer | `adam` |
 
+![divider](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
 ## ⚙️ Setup & Installation
 
 **1. Clone the repository:**
@@ -85,6 +103,8 @@ The project was built and documented in a phase-by-phase approach for educationa
 python phase5.py
 ```
 
+![divider](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
 ## 📈 Results
 
 | Metric | Value |
@@ -95,3 +115,5 @@ python phase5.py
 ## 🤝 Acknowledgments
 
 Special thanks to **CodeAlpha** for the internship opportunity and the hands-on experience in applied Computer Vision and Deep Learning.
+
+![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,100:22D3EE&height=100&section=footer)
