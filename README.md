@@ -28,17 +28,31 @@ The model was trained on the classic [MNIST dataset](http://yann.lecun.com/exdb/
 ## 🔄 Project Workflow
 
 ```mermaid
-flowchart LR
-    A["📥 phase1.py<br/>Load MNIST dataset"] --> B["🧹 phase2.py<br/>Normalize & reshape<br/>Visualize samples"]
-    B --> C["🏗️ phase3.py<br/>Build CNN architecture<br/>model.summary()"]
-    C --> D["🎯 phase4.py<br/>Train (5 epochs)<br/>Evaluate on test set"]
-    D --> E["🔮 phase5.py<br/>Run inference<br/>Save .keras model"]
+graph TD
+    subgraph Data["📊 Data Preparation"]
+        A["phase1.py<br/>Load MNIST"]
+        B["phase2.py<br/>Normalize · Reshape · Visualize"]
+        A --> B
+    end
 
-    style A fill:#6366F1,color:#fff
-    style B fill:#6366F1,color:#fff
-    style C fill:#22D3EE,color:#000
-    style D fill:#22D3EE,color:#000
-    style E fill:#10B981,color:#fff
+    subgraph Model["🧠 Model Building"]
+        C["phase3.py<br/>Build CNN"]
+        D["phase4.py<br/>Train 5 epochs · Evaluate"]
+        C --> D
+    end
+
+    subgraph Deploy["🚀 Inference"]
+        E["phase5.py<br/>Predict · Save .keras model"]
+    end
+
+    Data --> Model --> Deploy
+
+    classDef dataStyle fill:#1E293B,stroke:#6366F1,stroke-width:2px,color:#fff
+    classDef modelStyle fill:#1E293B,stroke:#22D3EE,stroke-width:2px,color:#fff
+    classDef deployStyle fill:#1E293B,stroke:#10B981,stroke-width:2px,color:#fff
+    class A,B dataStyle
+    class C,D modelStyle
+    class E deployStyle
 ```
 
 ## 🛠️ Tech Stack
@@ -57,25 +71,25 @@ flowchart LR
 The core of this project is a Sequential Convolutional Neural Network designed to process spatial hierarchies:
 
 ```mermaid
-flowchart TD
-    Input(["Input Image<br/>28x28x1"]) --> Conv1["Conv2D<br/>32 filters, 3x3<br/>+ ReLU"]
-    Conv1 --> Pool1["MaxPooling2D<br/>2x2"]
-    Pool1 --> Conv2["Conv2D<br/>64 filters, 3x3<br/>+ ReLU"]
-    Conv2 --> Pool2["MaxPooling2D<br/>2x2"]
-    Pool2 --> Flat["Flatten<br/>2D → 1D vector"]
-    Flat --> Dense1["Dense<br/>64 units, ReLU"]
-    Dense1 --> Dense2["Dense (Output)<br/>10 units, Softmax"]
-    Dense2 --> Output(["Predicted Digit<br/>0-9"])
+graph LR
+    I(("28×28×1")) --> C1["Conv2D 32<br/>3×3 · ReLU"]
+    C1 --> P1["MaxPool<br/>2×2"]
+    P1 --> C2["Conv2D 64<br/>3×3 · ReLU"]
+    C2 --> P2["MaxPool<br/>2×2"]
+    P2 --> F["Flatten"]
+    F --> D1["Dense 64<br/>ReLU"]
+    D1 --> D2["Dense 10<br/>Softmax"]
+    D2 --> O(("Digit<br/>0-9"))
 
-    style Input fill:#374151,color:#fff
-    style Conv1 fill:#6366F1,color:#fff
-    style Pool1 fill:#818CF8,color:#000
-    style Conv2 fill:#6366F1,color:#fff
-    style Pool2 fill:#818CF8,color:#000
-    style Flat fill:#22D3EE,color:#000
-    style Dense1 fill:#10B981,color:#fff
-    style Dense2 fill:#10B981,color:#fff
-    style Output fill:#374151,color:#fff
+    style I fill:#0F172A,stroke:#94A3B8,color:#fff
+    style C1 fill:#4338CA,color:#fff
+    style P1 fill:#4F46E5,color:#fff
+    style C2 fill:#4338CA,color:#fff
+    style P2 fill:#4F46E5,color:#fff
+    style F fill:#0891B2,color:#fff
+    style D1 fill:#059669,color:#fff
+    style D2 fill:#059669,color:#fff
+    style O fill:#0F172A,stroke:#94A3B8,color:#fff
 ```
 
 | Setting | Value |
