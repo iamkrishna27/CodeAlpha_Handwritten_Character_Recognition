@@ -25,6 +25,22 @@ The model was trained on the classic [MNIST dataset](http://yann.lecun.com/exdb/
 
 ![divider](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
+## 🔄 Project Workflow
+
+```mermaid
+flowchart LR
+    A["📥 phase1.py<br/>Load MNIST dataset"] --> B["🧹 phase2.py<br/>Normalize & reshape<br/>Visualize samples"]
+    B --> C["🏗️ phase3.py<br/>Build CNN architecture<br/>model.summary()"]
+    C --> D["🎯 phase4.py<br/>Train (5 epochs)<br/>Evaluate on test set"]
+    D --> E["🔮 phase5.py<br/>Run inference<br/>Save .keras model"]
+
+    style A fill:#6366F1,color:#fff
+    style B fill:#6366F1,color:#fff
+    style C fill:#22D3EE,color:#000
+    style D fill:#22D3EE,color:#000
+    style E fill:#10B981,color:#fff
+```
+
 ## 🛠️ Tech Stack
 
 | Component | Tool |
@@ -34,33 +50,32 @@ The model was trained on the classic [MNIST dataset](http://yann.lecun.com/exdb/
 | Data Manipulation | NumPy |
 | Data Visualization | Matplotlib |
 
+![divider](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
 ## 🧠 Model Architecture
 
 The core of this project is a Sequential Convolutional Neural Network designed to process spatial hierarchies:
 
-```
-Input (28x28x1)
-   │
-   ▼
-Conv2D (32 filters, 3x3) + ReLU     → extracts edges & curves
-   │
-   ▼
-MaxPooling2D (2x2)                  → downsamples
-   │
-   ▼
-Conv2D (64 filters, 3x3) + ReLU     → captures complex shapes
-   │
-   ▼
-MaxPooling2D (2x2)                  → downsamples further
-   │
-   ▼
-Flatten                             → 2D → 1D vector
-   │
-   ▼
-Dense (64 units, ReLU)              → feature interpretation
-   │
-   ▼
-Dense (10 units, Softmax)           → class probabilities
+```mermaid
+flowchart TD
+    Input(["Input Image<br/>28x28x1"]) --> Conv1["Conv2D<br/>32 filters, 3x3<br/>+ ReLU"]
+    Conv1 --> Pool1["MaxPooling2D<br/>2x2"]
+    Pool1 --> Conv2["Conv2D<br/>64 filters, 3x3<br/>+ ReLU"]
+    Conv2 --> Pool2["MaxPooling2D<br/>2x2"]
+    Pool2 --> Flat["Flatten<br/>2D → 1D vector"]
+    Flat --> Dense1["Dense<br/>64 units, ReLU"]
+    Dense1 --> Dense2["Dense (Output)<br/>10 units, Softmax"]
+    Dense2 --> Output(["Predicted Digit<br/>0-9"])
+
+    style Input fill:#374151,color:#fff
+    style Conv1 fill:#6366F1,color:#fff
+    style Pool1 fill:#818CF8,color:#000
+    style Conv2 fill:#6366F1,color:#fff
+    style Pool2 fill:#818CF8,color:#000
+    style Flat fill:#22D3EE,color:#000
+    style Dense1 fill:#10B981,color:#fff
+    style Dense2 fill:#10B981,color:#fff
+    style Output fill:#374151,color:#fff
 ```
 
 | Setting | Value |
